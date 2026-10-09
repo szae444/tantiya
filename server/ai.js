@@ -72,9 +72,16 @@ export function applyRules(ai) {
   const flags = [];
   let category = ai.category;
 
+  const partsSeen = [ai.roof, ai.walls, ai.structure].some((v) => v !== 'not_visible');
+  const buildingSubject = ai.main_subject === 'house_or_building' || ai.main_subject === 'debris_field';
   if (!ai.is_house_visible && category !== 'NOT_A_HOUSE') {
-    flags.push({ code: 'no_house', message: 'Model says no house is visible, so the suggestion was set to Not a house.' });
-    category = 'NOT_A_HOUSE';
+    if (!partsSeen && !buildingSubject) {
+      flags.push({ code: 'no_house', message: 'Model says no house is visible, so the suggestion was set to Not a house.' });
+      category = 'NOT_A_HOUSE';
+    } else {
+      // e.g. a debris field: no standing house, but these are the remains of houses. Keep the category.
+      flags.push({ code: 'house_unclear', message: 'No standing house is clearly visible. Check whether this shows the remains of a house.' });
+    }
   }
   const severe = ai.roof === 'mostly_gone' || ai.walls === 'mostly_gone' || ai.structure === 'collapsed';
   const allIntact = ai.roof === 'intact' && ai.walls === 'intact' && ai.structure === 'standing';

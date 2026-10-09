@@ -4,6 +4,12 @@ const MAX_SIDE = 1024;
 
 export async function resizeImage(file: File): Promise<Blob> {
   const bitmap = await createImageBitmap(file, { imageOrientation: 'from-image' });
+  // Already small JPEGs are sent untouched: re-encoding changes the pixels slightly, and the model
+  // should see exactly the same image the evaluation measured.
+  if (file.type === 'image/jpeg' && Math.max(bitmap.width, bitmap.height) <= MAX_SIDE) {
+    bitmap.close();
+    return file;
+  }
   const scale = Math.min(1, MAX_SIDE / Math.max(bitmap.width, bitmap.height));
   const width = Math.round(bitmap.width * scale);
   const height = Math.round(bitmap.height * scale);

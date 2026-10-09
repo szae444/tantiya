@@ -1,0 +1,401 @@
+{
+  "date": "2026-10-09T13:22:25.888Z",
+  "model": "gemma3:4b",
+  "promptVersion": "v2",
+  "photos": 37,
+  "agreement": {
+    "agreed": 27,
+    "total": 37,
+    "percent": 73
+  },
+  "damagedVsNot": {
+    "agreed": 33,
+    "total": 37,
+    "percent": 89.2
+  },
+  "perClass": {
+    "TOTAL": {
+      "photos": 9,
+      "agreed": 7
+    },
+    "PARTIAL": {
+      "photos": 10,
+      "agreed": 7
+    },
+    "MINOR": {
+      "photos": 10,
+      "agreed": 5
+    },
+    "NOT_A_HOUSE": {
+      "photos": 8,
+      "agreed": 8
+    }
+  },
+  "confusion": {
+    "TOTAL": {
+      "TOTAL": 7,
+      "PARTIAL": 2,
+      "MINOR": 0,
+      "NOT_A_HOUSE": 0
+    },
+    "PARTIAL": {
+      "TOTAL": 3,
+      "PARTIAL": 7,
+      "MINOR": 0,
+      "NOT_A_HOUSE": 0
+    },
+    "MINOR": {
+      "TOTAL": 1,
+      "PARTIAL": 3,
+      "MINOR": 5,
+      "NOT_A_HOUSE": 1
+    },
+    "NOT_A_HOUSE": {
+      "TOTAL": 0,
+      "PARTIAL": 0,
+      "MINOR": 0,
+      "NOT_A_HOUSE": 8
+    }
+  },
+  "secondsPerPhoto": {
+    "mean": 6.9,
+    "min": 6.2,
+    "max": 8.3
+  },
+  "hardware": {
+    "cpu": "AMD Ryzen 7 7435HS",
+    "ramGB": 16,
+    "gpu": "NVIDIA GeForce RTX 4050 Laptop GPU, 6141 MiB",
+    "os": "Windows_NT 10.0.26200"
+  },
+  "software": {
+    "node": "v22.21.1",
+    "ollama": "0.35.1"
+  },
+  "labelsNote": "Labels are draft labels from data/selection.json (made before running the model). See README for limitations.",
+  "results": [
+    {
+      "file": "p001.jpg",
+      "label": "TOTAL",
+      "predicted": "TOTAL",
+      "seconds": 7.2,
+      "flags": [
+        "leaning"
+      ],
+      "reason": "The majority of the roofs are gone, and the walls are severely damaged, indicating a catastrophic structural failure."
+    },
+    {
+      "file": "p002.jpg",
+      "label": "TOTAL",
+      "predicted": "TOTAL",
+      "seconds": 6.9,
+      "flags": [
+        "leaning"
+      ],
+      "reason": "The house is severely damaged with its roof and walls partially collapsed, rendering it unsafe."
+    },
+    {
+      "file": "p003.jpg",
+      "label": "TOTAL",
+      "predicted": "TOTAL",
+      "seconds": 6.4,
+      "flags": [
+        "leaning"
+      ],
+      "reason": "The roof and walls are severely damaged, rendering the house unsafe."
+    },
+    {
+      "file": "p004.jpg",
+      "label": "TOTAL",
+      "predicted": "TOTAL",
+      "seconds": 6.9,
+      "flags": [
+        "wide_shot"
+      ],
+      "reason": "The buildings are completely destroyed, with roofs and walls largely missing and the structure collapsed."
+    },
+    {
+      "file": "p005.jpg",
+      "label": "TOTAL",
+      "predicted": "PARTIAL",
+      "seconds": 6.9,
+      "flags": [],
+      "reason": "The shelter is constructed from damaged wood and corrugated metal, indicating significant structural damage from the storm."
+    },
+    {
+      "file": "p006.jpg",
+      "label": "TOTAL",
+      "predicted": "PARTIAL",
+      "seconds": 6.8,
+      "flags": [
+        "leaning"
+      ],
+      "reason": "The house is leaning significantly and has a large portion of its roof missing."
+    },
+    {
+      "file": "p007.jpg",
+      "label": "TOTAL",
+      "predicted": "TOTAL",
+      "seconds": 6.9,
+      "flags": [],
+      "reason": "The majority of the buildings are severely damaged and collapsed, indicating a catastrophic event."
+    },
+    {
+      "file": "p008.jpg",
+      "label": "TOTAL",
+      "predicted": "TOTAL",
+      "seconds": 7,
+      "flags": [
+        "leaning"
+      ],
+      "reason": "The roof is almost completely destroyed, and the walls show significant damage, rendering the structure unsafe."
+    },
+    {
+      "file": "p009.jpg",
+      "label": "TOTAL",
+      "predicted": "TOTAL",
+      "seconds": 6.9,
+      "flags": [
+        "leaning"
+      ],
+      "reason": "The house is severely damaged with its roof and walls largely collapsed."
+    },
+    {
+      "file": "p010.jpg",
+      "label": "PARTIAL",
+      "predicted": "PARTIAL",
+      "seconds": 7.6,
+      "flags": [],
+      "reason": "The building has a partially damaged roof and walls, indicating significant damage from the typhoon but potential for repair."
+    },
+    {
+      "file": "p011.jpg",
+      "label": "PARTIAL",
+      "predicted": "PARTIAL",
+      "seconds": 7.2,
+      "flags": [
+        "leaning"
+      ],
+      "reason": "The roof and walls are partially damaged, suggesting the building is unsafe but potentially repairable."
+    },
+    {
+      "file": "p012.jpg",
+      "label": "PARTIAL",
+      "predicted": "TOTAL",
+      "seconds": 6.5,
+      "flags": [],
+      "reason": "The roof and walls are almost entirely destroyed, rendering the structure unsafe."
+    },
+    {
+      "file": "p013.jpg",
+      "label": "PARTIAL",
+      "predicted": "PARTIAL",
+      "seconds": 6.9,
+      "flags": [
+        "leaning"
+      ],
+      "reason": "The roof and walls are significantly damaged, but the structure is still standing, suggesting it can be repaired."
+    },
+    {
+      "file": "p014.jpg",
+      "label": "PARTIAL",
+      "predicted": "PARTIAL",
+      "seconds": 6.8,
+      "flags": [],
+      "reason": "The roof and walls show significant damage from the storm, but the house remains standing."
+    },
+    {
+      "file": "p015.jpg",
+      "label": "PARTIAL",
+      "predicted": "TOTAL",
+      "seconds": 6.7,
+      "flags": [
+        "leaning"
+      ],
+      "reason": "The roofs of multiple buildings are completely destroyed, indicating significant structural damage."
+    },
+    {
+      "file": "p016.jpg",
+      "label": "PARTIAL",
+      "predicted": "PARTIAL",
+      "seconds": 7.4,
+      "flags": [],
+      "reason": "The house is covered in tarpaulins, indicating partial damage to the roof."
+    },
+    {
+      "file": "p017.jpg",
+      "label": "PARTIAL",
+      "predicted": "PARTIAL",
+      "seconds": 6.8,
+      "flags": [],
+      "reason": "The roof is covered with tarpaulins, indicating damage that requires repair."
+    },
+    {
+      "file": "p018.jpg",
+      "label": "PARTIAL",
+      "predicted": "PARTIAL",
+      "seconds": 8.3,
+      "flags": [],
+      "reason": "The roof shows signs of damage with roofing materials laid out, indicating repair work is in progress."
+    },
+    {
+      "file": "p019.jpg",
+      "label": "PARTIAL",
+      "predicted": "TOTAL",
+      "seconds": 6.5,
+      "flags": [
+        "leaning"
+      ],
+      "reason": "The roof and walls are significantly damaged, rendering the structure unsafe."
+    },
+    {
+      "file": "p020.jpg",
+      "label": "MINOR",
+      "predicted": "MINOR",
+      "seconds": 6.2,
+      "flags": [],
+      "reason": "The building appears structurally sound with intact roof and walls."
+    },
+    {
+      "file": "p021.jpg",
+      "label": "MINOR",
+      "predicted": "NOT_A_HOUSE",
+      "seconds": 6.9,
+      "flags": [
+        "check_subject",
+        "wide_shot"
+      ],
+      "reason": "The photo shows a large accumulation of broken plant material, indicating significant damage to the surrounding vegetation."
+    },
+    {
+      "file": "p022.jpg",
+      "label": "MINOR",
+      "predicted": "TOTAL",
+      "seconds": 6.8,
+      "flags": [
+        "leaning"
+      ],
+      "reason": "The house shows extensive damage with a missing roof and partially collapsed walls, rendering it unsafe."
+    },
+    {
+      "file": "p023.jpg",
+      "label": "MINOR",
+      "predicted": "MINOR",
+      "seconds": 6.9,
+      "flags": [],
+      "reason": "The house and trailer appear structurally sound with no visible damage."
+    },
+    {
+      "file": "p024.jpg",
+      "label": "MINOR",
+      "predicted": "MINOR",
+      "seconds": 6.5,
+      "flags": [],
+      "reason": "The hut appears structurally sound with an intact roof and walls."
+    },
+    {
+      "file": "p025.jpg",
+      "label": "MINOR",
+      "predicted": "MINOR",
+      "seconds": 6.4,
+      "flags": [],
+      "reason": "The house appears structurally sound with an intact roof and walls."
+    },
+    {
+      "file": "p026.jpg",
+      "label": "MINOR",
+      "predicted": "PARTIAL",
+      "seconds": 6.6,
+      "flags": [],
+      "reason": "The walls and roof show signs of damage from the typhoon."
+    },
+    {
+      "file": "p027.jpg",
+      "label": "MINOR",
+      "predicted": "PARTIAL",
+      "seconds": 6.5,
+      "flags": [],
+      "reason": "The roof is partially damaged with visible gaps and displaced thatching."
+    },
+    {
+      "file": "p028.jpg",
+      "label": "MINOR",
+      "predicted": "PARTIAL",
+      "seconds": 6.6,
+      "flags": [],
+      "reason": "The roof is visibly damaged with missing sections and a leaning appearance."
+    },
+    {
+      "file": "p029.jpg",
+      "label": "MINOR",
+      "predicted": "MINOR",
+      "seconds": 6.8,
+      "flags": [],
+      "reason": "The house appears structurally sound with no visible damage to the roof, walls, or supporting structure."
+    },
+    {
+      "file": "p030.jpg",
+      "label": "NOT_A_HOUSE",
+      "predicted": "NOT_A_HOUSE",
+      "seconds": 7.2,
+      "flags": [],
+      "reason": "The photo depicts a large military aircraft, not a residential building."
+    },
+    {
+      "file": "p031.jpg",
+      "label": "NOT_A_HOUSE",
+      "predicted": "NOT_A_HOUSE",
+      "seconds": 6.8,
+      "flags": [],
+      "reason": "The photo depicts an aircraft, not a house or building."
+    },
+    {
+      "file": "p032.jpg",
+      "label": "NOT_A_HOUSE",
+      "predicted": "NOT_A_HOUSE",
+      "seconds": 6.6,
+      "flags": [],
+      "reason": "The photo shows people receiving aid, not a damaged house."
+    },
+    {
+      "file": "p033.jpg",
+      "label": "NOT_A_HOUSE",
+      "predicted": "NOT_A_HOUSE",
+      "seconds": 6.5,
+      "flags": [],
+      "reason": "The image depicts temporary medical facilities, not a residential structure."
+    },
+    {
+      "file": "p034.jpg",
+      "label": "NOT_A_HOUSE",
+      "predicted": "NOT_A_HOUSE",
+      "seconds": 6.5,
+      "flags": [],
+      "reason": "The image depicts medical equipment and beds, not a house or building."
+    },
+    {
+      "file": "p035.jpg",
+      "label": "NOT_A_HOUSE",
+      "predicted": "NOT_A_HOUSE",
+      "seconds": 6.9,
+      "flags": [],
+      "reason": "The photo depicts military helicopters and personnel, not a house or building."
+    },
+    {
+      "file": "p036.jpg",
+      "label": "NOT_A_HOUSE",
+      "predicted": "NOT_A_HOUSE",
+      "seconds": 7.5,
+      "flags": [],
+      "reason": "The photo shows a large military transport aircraft unloading supplies, not a house."
+    },
+    {
+      "file": "p037.jpg",
+      "label": "NOT_A_HOUSE",
+      "predicted": "NOT_A_HOUSE",
+      "seconds": 6.8,
+      "flags": [],
+      "reason": "The photo depicts a forestry worker operating a chainsaw, not a house or building."
+    }
+  ]
+}

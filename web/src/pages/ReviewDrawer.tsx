@@ -41,6 +41,11 @@ export function ReviewDrawer({ ids, id, onNavigate, onClose }: Props) {
 
   const changing = !!a && !!choice && choice !== a.aiCategory;
 
+  // When the officer picks a different category, jump straight to the (required) reason box.
+  useEffect(() => {
+    if (changing && !a?.finalCategory) noteRef.current?.focus();
+  }, [changing, a?.finalCategory]);
+
   async function confirm() {
     if (!a || !choice || saving) return;
     if (changing && !note.trim()) {

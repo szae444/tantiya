@@ -65,7 +65,7 @@ const report = {
 };
 
 await fs.mkdir(path.join(root, 'results'), { recursive: true });
-const file = path.join(root, 'results', `eval-${report.date.slice(0, 10)}-${PROMPT_VERSION}.json`);
+const file = path.join(root, 'results', `eval-${report.date.slice(0, 16).replace(/[:T]/g, "-")}-${PROMPT_VERSION}.json`);
 await fs.writeFile(file, JSON.stringify(report, null, 2));
 
 console.log(`\nAgreed with labels on ${agree} of ${results.length} photos (${report.agreement.percent}%).`);

@@ -27,11 +27,40 @@ Damage assessment happens in the hours and days after a typhoon, when cell sites
 |---|---|
 | Vision AI (`gemma3:4b` via Ollama), damage categories, flags | One-time download of Ollama and the two models |
 | Duplicate detection (`nomic-embed-text` embeddings via Ollama + rules) | One-time `npm install` |
-| Database (SQLite), photo storage, web app, report, CSV export | Nothing else. The app checks and shows internet status, but never uses it |
+| Database (SQLite), photo storage, web app, report, CSV export | Nothing else. To show "Internet: offline · still works", the server only opens a TCP connection to 1.1.1.1:443 and sends no data |
+
+Verified by `npm run e2e`, which drives the full flow in a headless browser and fails if any request leaves the machine. Fonts and icons are bundled; there are no CDNs.
 
 ## Measured results
 
-<!-- RESULTS -->
+Measured on the demo laptop (Ryzen 7 7435HS, RTX 4050 6 GB, 16 GB RAM, Ollama 0.35.1) on **37 freely licensed photos** (9 totally damaged, 10 partially damaged, 10 minor/no damage, 8 not a house). Reproduce with `npm run eval`; raw outputs are in [`results/`](results/).
+
+| Prompt | Agreed with labels | Damaged vs not damaged | Not-a-house caught | Seconds per photo (mean) |
+|---|---|---|---|---|
+| **v2 (default), two runs** | **27 / 37 (73%) and 26 / 37 (70%)** | **33 / 37 (89%) and 32 / 37 (86%)** | 8 / 8 both runs | 6.9 / 6.7 |
+| v4 (adds Philippine building materials), one run, before the rule fix below | 27 / 37 (73%) | 33 / 37 (89%) | 7 / 8 | 7.3 |
+
+**Stability:** 36 of 37 photos got the same answer in both v2 runs. The one that changed is an aerial photo of a whole district (Total in run 1, Not a house in run 2). GPU arithmetic is not bit-for-bit repeatable, so borderline photos can flip even at temperature 0; another reason the officer decides.
+
+Confusion for v2, run 1 (rows = label, columns = AI suggestion):
+
+| | Total | Partial | Minor | Not a house |
+|---|---|---|---|---|
+| **Total** | 7 | 2 | 0 | 0 |
+| **Partial** | 3 | 7 | 0 | 0 |
+| **Minor** | 1 | 3 | 5 | 1 |
+| **Not a house** | 0 | 0 | 0 | 8 |
+
+What we learned:
+
+- **Most errors are Total vs Partial**, which human assessors also disagree on. That is why every result needs an officer's decision.
+- **Intact nipa huts were often called "partially damaged"** under v2 (thatch and bamboo look "damaged" to the model). That is a fairness risk for the poorest households. Prompt v4 fixed two of them but made the model under-call destroyed houses (5/9 Total vs 7/9), the worse error for families, so v2 stays the default. v4 was written after seeing v2's mistakes on the same photos, so its number is optimistic. Fixing this properly needs more Philippine house photos, which is our next step.
+- **Earlier prompt v3** (longer context) got 2 of 3 smoke-test photos wrong, so it was dropped before the full evaluation.
+- **A rule bug found in rehearsal.** For a debris field the model answered *Total* but marked "no house visible", and our safety rule turned that into *Not a house*. Debris is the remains of houses, so the rule now keeps the model's category and flags the photo instead (regression test in `scripts/test-rules.mjs`). The v2 numbers above were re-measured after the fix; the earlier files are kept as `results/*-before-rule-fix.json`.
+- **Duplicate check:** `npm run test:dedupe` catches 4/4 planted near-duplicates (including the typo "Villanueba" via embeddings, similarity 0.988) with 0/3 false alarms. The 0.95 threshold was set from measurement: the 435 pairs of distinct sample families topped out at 0.91.
+- The first request after starting Ollama took about 84 s (model loading); `npm run warmup` avoids that during demos.
+
+Caveats: 37 photos is a small test set, and the labels are draft labels from the team's visual inspection (prepared with AI assistance, made before running the model), not official assessments. The 10 photos in the live demo (`scripts/demo-set.mjs`) are a curated subset; the numbers above are for the full set.
 
 ## Setup (Windows, macOS or Linux)
 
@@ -58,7 +87,10 @@ Development mode with hot reload: `npm run dev` (web on http://localhost:5173, A
 |---|---|
 | `npm run warmup` | Loads the vision model before a demo (first load can take over a minute) |
 | `npm run eval` | Re-runs the accuracy test on `data/photos` + `data/labels.csv` and saves `results/eval-*.json` |
-| `node scripts/test-dedupe.mjs` | Checks that planted duplicate families are caught and distinct ones are not |
+| `npm test` | Unit tests for the safety rules applied to every model answer |
+| `npm run test:dedupe` | Checks that planted duplicate families are caught and distinct ones are not (needs `npm run seed`) |
+| `npm run e2e -- <outDir> data/demo/*.jpg` | Full flow through the real UI in headless Edge/Chrome, with screenshots and an offline check (server must be running) |
+| `npm run demo-set` | Copies the 10 stage-demo photos to `data/demo/` |
 | `npm run reset` | Deletes all photos, decisions and families (stop the server first) |
 | `TANTIYA_PROMPT=v3 npm run eval` | Compares another prompt version on the same photos |
 

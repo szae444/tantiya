@@ -16,7 +16,11 @@
     "seed": "node scripts/seed.mjs",
     "reset": "node scripts/reset.mjs",
     "eval": "node scripts/eval.mjs",
-    "typecheck": "tsc --noEmit -p web"
+    "typecheck": "tsc --noEmit -p web",
+    "test": "node scripts/test-rules.mjs",
+    "test:dedupe": "node scripts/test-dedupe.mjs",
+    "e2e": "node scripts/e2e.mjs",
+    "demo-set": "node scripts/demo-set.mjs"
   },
   "dependencies": {
     "@fontsource-variable/archivo": "^5.3.0",

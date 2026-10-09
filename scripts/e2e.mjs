@@ -14,7 +14,13 @@ const browser = await puppeteer.launch({ executablePath, headless: true, default
 const page = await browser.newPage();
 const errors = [];
 page.on('pageerror', (e) => errors.push(e.message));
-page.on('console', (m) => m.type() === 'error' && errors.push(m.text()));
+page.on('console', (m) => m.type() === 'error' && !m.text().includes('status of 409') && errors.push(m.text())); // 409 = expected duplicate response
+// Offline proof: the browser must never request anything outside this machine.
+const external = new Set();
+page.on('request', (r) => {
+  const { protocol, hostname } = new URL(r.url());
+  if (/^https?:$/.test(protocol) && !['localhost', '127.0.0.1'].includes(hostname)) external.add(r.url());
+});
 const shot = (name) => page.screenshot({ path: path.join(outDir, `${name}.png`) });
 const wait = (ms) => new Promise((r) => setTimeout(r, ms));
 const step = (msg) => console.log(`• ${msg}`);
@@ -112,5 +118,7 @@ await wait(900);
 await shot('7-phone-intake');
 
 await browser.close();
+if (external.size) { console.log('Requests left this machine:\n' + [...external].join('\n')); process.exit(1); }
+step('no request left this machine (fonts, icons and AI are all local)');
 if (errors.length) { console.log('Browser errors:\n' + errors.join('\n')); process.exit(1); }
 console.log('\nEnd-to-end flow passed.');
