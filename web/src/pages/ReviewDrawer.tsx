@@ -43,7 +43,7 @@ export function ReviewDrawer({ ids, id, onNavigate, onClose }: Props) {
 
   // When the officer picks a different category, jump straight to the (required) reason box.
   useEffect(() => {
-    if (changing && !a?.finalCategory) noteRef.current?.focus();
+    if (changing && !a?.finalCategory) { noteRef.current?.focus({ preventScroll: true }); noteRef.current?.scrollIntoView({ block: 'nearest', behavior: 'smooth' }); }
   }, [changing, a?.finalCategory]);
 
   async function confirm() {
@@ -83,10 +83,11 @@ export function ReviewDrawer({ ids, id, onNavigate, onClose }: Props) {
       if (typing) { if (e.key === 'Enter' && (e.ctrlKey || e.metaKey)) void confirm(); return; }
       if (e.key === 'ArrowRight' || e.key === 'j') next();
       else if (e.key === 'ArrowLeft' || e.key === 'k') prev();
-      else if (e.key === 'Enter' && a && !a.finalCategory) void confirm();
+      else if (e.key === 'Enter' && a && !a.finalCategory) { e.preventDefault(); void confirm(); }
       else {
         const c = CATEGORIES.find((m) => m.key === e.key);
-        if (c && a && !a.finalCategory) setChoice(c.id);
+        // preventDefault: the key must not also be typed into the reason box that gets focused next.
+        if (c && a && !a.finalCategory) { e.preventDefault(); setChoice(c.id); }
       }
     }
     window.addEventListener('keydown', onKey);
