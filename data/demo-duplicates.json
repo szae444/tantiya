@@ -1,0 +1,14 @@
+{
+  "about": "Near-duplicates of sample families, to show (and test) the duplicate check. Each 'duplicateOf' family is in households.json. 'distinct' entries are different families that must NOT be flagged.",
+  "duplicates": [
+    { "headName": "Maria  Santos ", "barangay": "Brgy. San Jose", "streetPurok": "P-3", "duplicateOf": "Maria Santos" },
+    { "headName": "Juan dela Cruz Jr.", "barangay": "San Jose", "streetPurok": "Purok 1", "duplicateOf": "Juan Dela Cruz" },
+    { "headName": "Romeo Tabanag", "barangay": "Sto. Niño", "streetPurok": "Prk 4", "duplicateOf": "Romeo Tabañag" },
+    { "headName": "Rosario Villanueba", "barangay": "San Jose", "streetPurok": "Purok 2", "duplicateOf": "Rosario Villanueva" }
+  ],
+  "distinct": [
+    { "headName": "Maria Santiago", "barangay": "Baybay", "streetPurok": "Purok 5" },
+    { "headName": "Pedro Villareal", "barangay": "San Roque", "streetPurok": "Purok 4" },
+    { "headName": "Liza Gonzales", "barangay": "Poblacion", "streetPurok": "Mabini St." }
+  ]
+}

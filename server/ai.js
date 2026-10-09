@@ -56,7 +56,14 @@ Work in this order:
 The officer makes the final decision; give your honest best suggestion.
 Answer only with JSON matching this schema: ${JSON.stringify(SCHEMA)}`;
 
-const PROMPTS = { v2: PROMPT_V2, v3: PROMPT_V3 };
+// v4 = v2 plus one sentence on Philippine building materials. Added after the v2 evaluation showed
+// intact nipa huts being called "partially damaged" (thatch and bamboo read as damage).
+const PROMPT_V4 = PROMPT_V2.replace(
+  'Otherwise suggest a category:',
+  'Nipa (thatched palm) roofs, bamboo or woven walls, wooden houses and houses on stilts are normal Philippine building styles, not damage; judge damage only by parts that are missing, broken, collapsed or displaced. Otherwise suggest a category:',
+);
+
+const PROMPTS = { v2: PROMPT_V2, v3: PROMPT_V3, v4: PROMPT_V4 };
 if (!PROMPTS[PROMPT_VERSION]) throw new Error(`Unknown TANTIYA_PROMPT "${PROMPT_VERSION}". Use one of: ${Object.keys(PROMPTS).join(', ')}`);
 const PROMPT = PROMPTS[PROMPT_VERSION];
 

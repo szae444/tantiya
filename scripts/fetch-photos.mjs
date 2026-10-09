@@ -15,7 +15,8 @@ const SOURCES = [
   { category: 'Aftermath of Typhoon Haiyan in Guiuan', limit: 20 },
   { category: 'Aftermath of Typhoon Haiyan (2013)', limit: 20 },
   { category: 'Effects of Typhoon Fung-wong (2025) in the Philippines', limit: 40 },
-  { category: 'Nipa huts in the Philippines', limit: 20 },
+  { category: 'Nipa huts', limit: 30 },
+  { search: 'house Philippines barangay street concrete', limit: 20 },
   { search: 'house damaged typhoon Philippines roof', limit: 30 },
   { search: 'FEMA hurricane damaged home roof', limit: 30 },
 ];
@@ -56,8 +57,10 @@ async function listFiles(source) {
 }
 
 await fs.mkdir(outDir, { recursive: true });
-const seen = new Set();
-const kept = [];
+// Incremental: keep earlier downloads (and their ids) and only add new files.
+const listFile = path.join(root, 'data', 'candidates.json');
+const kept = JSON.parse(await fs.readFile(listFile, 'utf8').catch(() => '[]'));
+const seen = new Set(kept.map((k) => k.title));
 for (const source of SOURCES) {
   const files = await listFiles(source);
   for (const f of files) {
@@ -71,5 +74,5 @@ for (const source of SOURCES) {
     process.stdout.write(`${id} ${f.license.padEnd(14)} ${f.title.slice(0, 70)}\n`);
   }
 }
-await fs.writeFile(path.join(root, 'data', 'candidates.json'), JSON.stringify(kept, null, 2));
+await fs.writeFile(listFile, JSON.stringify(kept, null, 2));
 console.log(`\nSaved ${kept.length} candidates to data/candidates/`);

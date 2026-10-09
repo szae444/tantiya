@@ -1,0 +1,45 @@
+{
+  "about": "Test set selected from Wikimedia Commons candidates (scripts/fetch-photos.mjs). Labels are DRAFT labels made by visual inspection BEFORE running Tantiya's model, prepared with AI assistance (Claude Code) and pending review by the team. Edit a label here and re-run scripts/build-dataset.mjs to change it.",
+  "photos": [
+    { "candidate": "c024", "label": "TOTAL", "note": "aerial, wide shot of flattened neighborhood" },
+    { "candidate": "c026", "label": "TOTAL", "note": "houses flattened among palms" },
+    { "candidate": "c028", "label": "TOTAL", "note": "debris field, wide shot" },
+    { "candidate": "c029", "label": "TOTAL", "note": "debris field, wide shot" },
+    { "candidate": "c055", "label": "TOTAL", "note": "collapsed light-material house" },
+    { "candidate": "c056", "label": "TOTAL", "note": "destroyed house, debris" },
+    { "candidate": "c061", "label": "TOTAL", "note": "aerial of destroyed coastal area" },
+    { "candidate": "c087", "label": "TOTAL", "note": "edge case: roof destroyed, walls standing; roof unusable per DSWD definition" },
+    { "candidate": "c094", "label": "TOTAL", "note": "house reduced to debris" },
+
+    { "candidate": "c025", "label": "PARTIAL", "note": "roof partly damaged, building standing" },
+    { "candidate": "c068", "label": "PARTIAL", "note": "edge case: roof sheets gone, concrete walls standing" },
+    { "candidate": "c082", "label": "PARTIAL", "note": "roof damage, structure standing" },
+    { "candidate": "c084", "label": "PARTIAL", "note": "tree fallen against house" },
+    { "candidate": "c085", "label": "PARTIAL", "note": "roof section torn off" },
+    { "candidate": "c088", "label": "PARTIAL", "note": "roofs torn on several units" },
+    { "candidate": "c089", "label": "PARTIAL", "note": "roofs covered with tarps after damage" },
+    { "candidate": "c096", "label": "PARTIAL", "note": "roof tarped after damage" },
+    { "candidate": "c101", "label": "PARTIAL", "note": "missing shingles, roof being tarped" },
+    { "candidate": "c110", "label": "PARTIAL", "note": "mobile home with torn panels" },
+
+    { "candidate": "c080", "label": "MINOR", "note": "intact concrete house" },
+    { "candidate": "c081", "label": "MINOR", "note": "houses intact, vegetation damaged" },
+    { "candidate": "c083", "label": "MINOR", "note": "house intact, windows boarded" },
+    { "candidate": "c103", "label": "MINOR", "note": "house intact, trailer beside it" },
+    { "candidate": "c114", "label": "MINOR", "note": "intact bamboo house" },
+    { "candidate": "c115", "label": "MINOR", "note": "intact nipa hut" },
+    { "candidate": "c122", "label": "MINOR", "note": "intact nipa hut on stilts" },
+    { "candidate": "c129", "label": "MINOR", "note": "intact nipa hut" },
+    { "candidate": "c137", "label": "MINOR", "note": "intact house on a street" },
+    { "candidate": "c147", "label": "MINOR", "note": "intact heritage house" },
+
+    { "candidate": "c002", "label": "NOT_A_HOUSE", "note": "aircraft" },
+    { "candidate": "c009", "label": "NOT_A_HOUSE", "note": "aircraft in flight" },
+    { "candidate": "c032", "label": "NOT_A_HOUSE", "note": "relief boxes being unloaded" },
+    { "candidate": "c038", "label": "NOT_A_HOUSE", "note": "tents" },
+    { "candidate": "c039", "label": "NOT_A_HOUSE", "note": "cots inside a shelter" },
+    { "candidate": "c053", "label": "NOT_A_HOUSE", "note": "helicopters at sunset" },
+    { "candidate": "c060", "label": "NOT_A_HOUSE", "note": "relief goods on a field" },
+    { "candidate": "c076", "label": "NOT_A_HOUSE", "note": "workers sawing logs" }
+  ]
+}

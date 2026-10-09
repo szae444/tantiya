@@ -18,6 +18,9 @@ export function normalizeName(name = '') {
 export function normalizePlace(place = '') {
   return place
     .toLowerCase()
+    .normalize('NFKD').replace(/[̀-ͯ]/g, '') // Niño -> nino
+    .replace(/\bsto\b\.?/g, 'santo')
+    .replace(/\bsta\b\.?/g, 'santa')
     .replace(/\bbrgy\b\.?|\bbgy\b\.?|\bbarangay\b/g, ' ')
     .replace(/\bp\s*-?\s*(\d+)\b/g, 'purok $1')
     .replace(/\bprk\b\.?/g, 'purok')

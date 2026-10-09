@@ -8,7 +8,7 @@ import multer from 'multer';
 import { ollamaStatus, warmUp } from './ai.js';
 import { config } from './config.js';
 import { CATEGORIES, db, queries, toAssessment, toHousehold } from './db.js';
-import { findDuplicates } from './dedupe.js';
+import { embed, findDuplicates } from './dedupe.js';
 import { broadcast, subscribe } from './events.js';
 import { enqueue, queueState, resumePending } from './queue.js';
 
@@ -236,5 +236,20 @@ app.listen(config.port, config.host, () => {
   resumePending();
   warmUp()
     .then(() => console.log(`AI model ${config.visionModel} is loaded and ready.`))
-    .catch((err) => console.warn(`Could not warm up the AI model: ${err.message}`));
+    .catch((err) => console.warn(`Could not warm up the AI model: ${err.message}`))
+    .then(backfillEmbeddings);
+});
+
+/** Families saved while the embedding model was unavailable get their vectors now. */
+async function backfillEmbeddings() {
+  for (const h of queries.allHouseholdsForDedupe.all().filter((x) => !x.embedding)) {
+    const vector = await embed(h);
+    if (!vector) return;
+    queries.setEmbedding.run(JSON.stringify(vector), h.id);
+  }
+}
+
+process.on('SIGINT', () => {
+  db.close();
+  process.exit(0);
 });
