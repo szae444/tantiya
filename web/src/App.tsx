@@ -25,8 +25,23 @@ export function App() {
   };
 
   return (
-    <div className="flex h-full">
-      <aside className="no-print flex w-[248px] shrink-0 flex-col border-r border-line bg-ink-0">
+    <div className="flex h-full flex-col md:flex-row">
+      {/* Phones: compact header + tab bar (field staff uploading over local Wi-Fi) */}
+      <header className="no-print flex items-center justify-between border-b border-line px-4 py-3 md:hidden">
+        <img src="/logo.png" alt="Tantiya" className="h-auto w-[120px]" />
+        <nav className="flex gap-1">
+          {NAV.map((n) => {
+            const Icon = n.icon;
+            return (
+              <button key={n.id} onClick={() => go(n.id)} aria-label={n.label}
+                className={`rounded-lg p-2.5 ${route === n.id ? 'bg-ink-2 text-coral' : 'text-fg-2'}`}>
+                <Icon size={20} />
+              </button>
+            );
+          })}
+        </nav>
+      </header>
+      <aside className="no-print hidden w-[248px] shrink-0 flex-col border-r border-line bg-ink-0 md:flex">
         <a href="#/triage" className="block px-5 pt-5 pb-6" aria-label="Tantiya home">
           <img src="/logo.png" alt="Tantiya" className="h-auto w-[170px]" />
         </a>

@@ -21,7 +21,7 @@ export function HouseholdsPage() {
         <span className="font-mono text-[13px] text-fg-2"><b className="text-fg">{households.length}</b> families · <b className="text-fg">{barangays}</b> barangays</span>
       </PageHeader>
 
-      <div className="grid gap-8 px-10 py-8 xl:grid-cols-[minmax(0,1fr)_420px]">
+      <div className="grid gap-8 px-5 md:px-10 py-8 xl:grid-cols-[minmax(0,1fr)_420px]">
         <section className="min-w-0">
           <input value={q} onChange={(e) => setQ(e.target.value)} placeholder="Search by name, barangay or purok…" className={`${inputClass} max-w-md`} />
           {households.length === 0 ? (

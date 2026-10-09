@@ -32,7 +32,7 @@ export function ReportPage() {
         </PageHeader>
       </div>
 
-      <div className="px-10 py-8">
+      <div className="px-5 md:px-10 py-8">
         <div className="hidden print:block">
           <div className="text-[22px] font-extrabold" style={{ fontStretch: '125%' }}>Tantiya · Damage report</div>
           <div className="mb-4 text-[12px]">Prepared {today}. Officer-confirmed categories only.</div>

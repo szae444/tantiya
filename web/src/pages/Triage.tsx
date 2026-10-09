@@ -61,7 +61,7 @@ export function TriagePage() {
       </PageHeader>
 
       {(waiting.length > 0 || errors.length > 0) && (
-        <div className="flex flex-wrap items-center gap-3 border-b border-line bg-ink-1 px-10 py-3 text-[14px]">
+        <div className="flex flex-wrap items-center gap-3 border-b border-line bg-ink-1 px-5 md:px-10 py-3 text-[14px]">
           {waiting.length > 0 && (
             <span className="flex items-center gap-2 text-fg-2"><Loader2 size={15} className="animate-spin text-coral" /> AI is analyzing {waiting.length} more photo{waiting.length === 1 ? '' : 's'}. Cards appear as they finish.</span>
           )}
@@ -76,7 +76,7 @@ export function TriagePage() {
         </div>
       )}
 
-      <div className="grid grid-cols-1 gap-5 px-10 py-7 md:grid-cols-2 xl:grid-cols-4">
+      <div className="grid grid-cols-1 gap-5 px-5 md:px-10 py-7 md:grid-cols-2 xl:grid-cols-4">
         {CATEGORIES.map((c) => {
           const items = ordered.filter((a) => currentCategory(a) === c.id);
           const Icon = c.icon;

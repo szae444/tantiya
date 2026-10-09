@@ -44,7 +44,7 @@ export function IntakePage() {
         <Button variant="secondary" onClick={() => go('triage')}>Go to triage →</Button>
       </PageHeader>
 
-      <div className="grid gap-8 px-10 py-8 xl:grid-cols-[minmax(0,1fr)_340px]">
+      <div className="grid gap-8 px-5 md:px-10 py-8 xl:grid-cols-[minmax(0,1fr)_340px]">
         <section>
           <div
             onDragOver={(e) => { e.preventDefault(); setDragging(true); }}

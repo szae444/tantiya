@@ -2,10 +2,10 @@ import type { ButtonHTMLAttributes, ReactNode } from 'react';
 
 export function PageHeader({ kicker, title, children }: { kicker: string; title: ReactNode; children?: ReactNode }) {
   return (
-    <header className="flex flex-wrap items-end justify-between gap-6 border-b border-line px-10 pt-9 pb-6">
+    <header className="flex flex-wrap items-end justify-between gap-6 border-b border-line px-5 md:px-10 pt-9 pb-6">
       <div>
         <div className="label-mono text-fg-3">{kicker}</div>
-        <h1 className="display mt-2 text-[40px]">{title}</h1>
+        <h1 className="display mt-2 text-[30px] md:text-[40px]">{title}</h1>
       </div>
       {children && <div className="flex flex-wrap items-center gap-3">{children}</div>}
     </header>
