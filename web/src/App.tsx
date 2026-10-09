@@ -112,10 +112,15 @@ function EngineStatus() {
         </div>
         <div className="flex items-center justify-between">
           <dt className="flex items-center gap-1.5 text-fg-3">{health?.internet ? <Wifi size={13} /> : <WifiOff size={13} />} Internet</dt>
-          <dd className={`font-mono text-[12px] ${health?.internet ? 'text-fg-2' : 'text-minor'}`}>
-            {health ? (health.internet ? 'connected' : 'offline · still works') : '—'}
+          <dd className={`whitespace-nowrap font-mono text-[12px] ${health?.internet ? 'text-fg-2' : 'font-semibold text-minor'}`}>
+            {health ? (health.internet ? 'connected' : 'offline') : '—'}
           </dd>
         </div>
+        {health && !health.internet && (
+          <div className="flex items-center gap-1.5 rounded-md bg-minor/10 px-2 py-1 text-[12px] text-minor">
+            <span className="size-1.5 rounded-full bg-minor" /> Everything still works offline
+          </div>
+        )}
       </dl>
     </div>
   );
